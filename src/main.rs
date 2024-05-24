@@ -34,7 +34,7 @@ const HELP: &str =
     >> help: recites all commands,
     >> add [name under which it will be stored] [password to be saved]: will encrypt and save a password and store it under a given name,
     >> find [name given to password before it was saved]: will fetch and unencrypt a password using the name given to it,
-    >> list: will enumerate all the names assigned to passwords,";
+    >> list: will enumerate all the names assigned to passwords";
 
 fn main() -> Result<()> {
     let time = std::time::SystemTime::now();
