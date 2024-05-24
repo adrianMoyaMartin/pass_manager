@@ -1,19 +1,12 @@
 use sodiumoxide::crypto::secretbox::Nonce;
 use sodiumoxide::crypto::secretbox;
 
-use std::io::BufWriter;
 use std::io::Write;
-use std::fs::File;
+use std::io::Result;
 use sodiumoxide::crypto::hash::sha256::Digest;
 
-use rustyline::Result;
 
-pub fn add_command(
-    fractured_args: Vec<&str>,
-    file: &mut BufWriter<File>,
-    nonce: [u8; 24],
-    pass: Digest
-) -> Result<()> {
+pub fn add_command<T: Write>(fractured_args: Vec<&str>, file: &mut T, nonce: [u8; 24], pass: Digest) -> Result<()> {
     if fractured_args.len() == 3 {
         let safe_pass = secretbox::seal(
             fractured_args[2].as_ref(),
